@@ -1,11 +1,735 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibly 🌟 - Sosyal Medya</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23667eea;stop-opacity:1' /><stop offset='100%' style='stop-color:%23764ba2;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='65' font-family='Inter' font-size='40' fill='white' text-anchor='middle' font-weight='700'>V</text></svg>" type="image/svg+xml">
 </head>
 <body>
-    selam
+    <div id="app">
+        <!-- Enhanced Splash Screen with Animation -->
+        <div id="splash-screen" class="splash-screen">
+            <div class="splash-content">
+                <div class="logo-container">
+                    <div class="logo-circle animated-logo">
+                        <span class="logo-text">V</span>
+                    </div>
+                    <h1 class="app-name">Vibly</h1>
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Language Selector -->
+        <div id="language-selector" class="language-selector hidden">
+            <div class="language-content">
+                <h2 data-tr="choose_language" data-en="Choose Language">Dil Seçin</h2>
+                <div class="language-options">
+                    <button class="language-btn" data-lang="tr">
+                        <span class="flag">🇹🇷</span>
+                        <span>Türkçe</span>
+                    </button>
+                    <button class="language-btn" data-lang="en">
+                        <span class="flag">🇺🇸</span>
+                        <span>English</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auth Screen -->
+        <div id="auth-screen" class="screen hidden">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <div class="logo-container">
+                        <div class="logo-circle">
+                            <span class="logo-text">V</span>
+                        </div>
+                        <h1 class="app-name">Vibly</h1>
+                    </div>
+                    <p class="tagline" data-tr="connect_share_vibe" data-en="Connect, Share, Vibe">Bağlan, Paylaş, Yaşa</p>
+                </div>
+
+                <!-- Login Form -->
+                <div id="login-form" class="auth-form">
+                    <h2 data-tr="welcome_back" data-en="Welcome Back">Hoş Geldin</h2>
+                    <form>
+                        <div class="input-group">
+                            <input type="email" id="login-email" data-tr="email" data-en="Email" placeholder="E-posta" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="login-password" data-tr="password" data-en="Password" placeholder="Şifre" required>
+                        </div>
+                        <button type="submit" class="btn-primary" data-tr="sign_in" data-en="Sign In">Giriş Yap</button>
+                    </form>
+                    <p class="switch-auth">
+                        <span data-tr="no_account" data-en="Don't have an account?">Hesabın yok mu?</span> 
+                        <span id="show-register" data-tr="sign_up" data-en="Sign up">Kayıt ol</span>
+                    </p>
+                </div>
+
+                <!-- Register Form -->
+                <div id="register-form" class="auth-form hidden">
+                    <h2 data-tr="join_vibly" data-en="Join Vibly">Vibly'ye Katıl</h2>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" id="register-username" data-tr="username" data-en="Username" placeholder="Kullanıcı adı" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="register-email" data-tr="email" data-en="Email" placeholder="E-posta" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="register-displayname" data-tr="display_name" data-en="Display Name" placeholder="Görünen ad" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="register-password" data-tr="password" data-en="Password" placeholder="Şifre" required>
+                            <div class="password-strength" id="password-strength"></div>
+                        </div>
+                        <div class="captcha-container">
+                            <div class="captcha-question" id="captcha-question"></div>
+                            <input type="number" id="captcha-answer" placeholder="Cevap" required>
+                        </div>
+                        <div class="privacy-agreement">
+                            <label>
+                                <input type="checkbox" id="privacy-checkbox" required>
+                                <span data-tr="privacy_agreement" data-en="I agree to the Privacy Policy">Gizlilik Politikasını kabul ediyorum</span>
+                                <button type="button" id="show-privacy" class="link-btn">Oku</button>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary" data-tr="create_account" data-en="Create Account">Hesap Oluştur</button>
+                    </form>
+                    <p class="switch-auth">
+                        <span data-tr="have_account" data-en="Already have an account?">Zaten hesabın var mı?</span> 
+                        <span id="show-login" data-tr="sign_in" data-en="Sign in">Giriş yap</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App -->
+        <div id="main-app" class="screen hidden">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-header">
+                    <div class="logo-container">
+                        <div class="logo-circle small">
+                            <span class="logo-text">V</span>
+                        </div>
+                        <h1 class="app-name">Vibly</h1>
+                    </div>
+                </div>
+                
+                <div class="nav-items">
+                    <button class="nav-item active" data-view="feed" title="Ana Sayfa">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9,22 9,12 15,12 15,22"></polyline>
+                        </svg>
+                        <span data-tr="home" data-en="Home">Ana Sayfa</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="search" title="Ara">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="21 21l-4.35-4.35"></path>
+                        </svg>
+                        <span data-tr="search" data-en="Search">Ara</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="explore" title="Keşfet">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27,6.96 12,12.01 20.73,6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        <span data-tr="explore" data-en="Explore">Keşfet</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="reels" title="Reels">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <span data-tr="reels" data-en="Reels">Reels</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="create" title="Oluştur">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        <span data-tr="create" data-en="Create">Oluştur</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="tweets" title="Tweetler">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                        <span data-tr="tweets" data-en="Tweets">Tweet</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="chat" title="Mesajlar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span data-tr="messages" data-en="Messages">Mesaj</span>
+                        <span class="notification-badge hidden" id="message-count">0</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="notifications" title="Bildirimler">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span data-tr="notifications" data-en="Notifications">Bildirimler</span>
+                        <span class="notification-badge hidden" id="notification-count">0</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="profile" title="Profil">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span data-tr="profile" data-en="Profile">Profil</span>
+                    </button>
+                    
+                    <button class="nav-item" data-view="settings" title="Ayarlar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        <span data-tr="settings" data-en="Settings">Ayarlar</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Feed View -->
+                <div id="feed-view" class="view active">
+                    <div class="stories-container">
+                        <div class="stories-list" id="stories-list">
+                            <div class="story-item add-story">
+                                <div class="story-avatar">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </div>
+                                <span data-tr="your_story" data-en="Your Story">Hikayen</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feed-container" id="feed-container">
+                        <!-- Posts will be dynamically loaded here -->
+                    </div>
+                </div>
+
+                <!-- Search View -->
+                <div id="search-view" class="view">
+                    <div class="search-header">
+                        <h2 data-tr="search" data-en="Search">Ara</h2>
+                        <div class="search-input-container">
+                            <input type="text" id="main-search-input" data-tr="search_placeholder" data-en="Search users, posts, hashtags..." placeholder="Kullanıcı, gönderi, hashtag ara...">
+                            <button id="main-search-submit" class="btn-primary" data-tr="search" data-en="Search">Ara</button>
+                        </div>
+                    </div>
+                    
+                    <div class="search-tabs">
+                        <button class="search-tab active" data-tab="all" data-tr="all" data-en="All">Tümü</button>
+                        <button class="search-tab" data-tab="users" data-tr="users" data-en="Users">Kullanıcılar</button>
+                        <button class="search-tab" data-tab="posts" data-tr="posts" data-en="Posts">Gönderiler</button>
+                        <button class="search-tab" data-tab="videos" data-tr="videos" data-en="Videos">Videolar</button>
+                        <button class="search-tab" data-tab="tweets" data-tr="tweets" data-en="Tweets">Tweetler</button>
+                    </div>
+                    
+                    <div id="search-results" class="search-results">
+                        <div class="search-history">
+                            <h3 data-tr="recent_searches" data-en="Recent Searches">Son Aramalar</h3>
+                            <div id="search-history-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications View -->
+                <div id="notifications-view" class="view">
+                    <div class="notifications-header">
+                        <h2 data-tr="notifications" data-en="Notifications">Bildirimler</h2>
+                        <button class="btn-secondary" id="mark-all-read" data-tr="mark_all_read" data-en="Mark All Read">Tümünü Okundu İşaretle</button>
+                    </div>
+                    <div class="notifications-container" id="notifications-container">
+                        <!-- Notifications will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Explore View -->
+                <div id="explore-view" class="view">
+                    <div class="explore-header">
+                        <h2 data-tr="explore" data-en="Explore">Keşfet</h2>
+                        <div class="explore-tabs">
+                            <button class="explore-tab active" data-tab="trending" data-tr="trending" data-en="Trending">Trend</button>
+                            <button class="explore-tab" data-tab="recent" data-tr="recent" data-en="Recent">Son</button>
+                            <button class="explore-tab" data-tab="popular" data-tr="popular" data-en="Popular">Popüler</button>
+                        </div>
+                    </div>
+                    <div class="explore-grid" id="explore-grid">
+                        <!-- Explore content will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Reels View -->
+                <div id="reels-view" class="view">
+                    <div class="reels-container" id="reels-container">
+                        <!-- Reels will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Tweets View -->
+                <div id="tweets-view" class="view">
+                    <div class="tweets-header">
+                        <h2 data-tr="tweets" data-en="Tweets">Tweetler</h2>
+                    </div>
+                    
+                    <!-- Quick Tweet Form -->
+                    <div class="quick-tweet-form">
+                        <textarea id="quick-tweet-input" data-tr="whats_happening" data-en="What's happening?" placeholder="Neler oluyor?"></textarea>
+                        <div class="quick-tweet-actions">
+                            <button class="btn-primary" id="quick-tweet-btn" data-tr="tweet" data-en="Tweet">Tweet</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tweets-container" id="tweets-container">
+                        <!-- Tweets will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Stories View -->
+                <div id="stories-view" class="view">
+                    <div class="stories-viewer" id="stories-viewer">
+                        <!-- Stories viewer will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Chat View -->
+                <div id="chat-view" class="view">
+                    <div class="chat-list" id="chat-list">
+                        <div class="chat-header">
+                            <h2 data-tr="messages" data-en="Messages">Mesajlar</h2>
+                            <button class="btn-secondary" id="new-chat-btn" data-tr="new_chat" data-en="New Chat">Yeni Sohbet</button>
+                        </div>
+                        <div class="chats-container" id="chats-container">
+                            <!-- Chat list will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="chat-conversation hidden" id="chat-conversation">
+                        <div class="conversation-header">
+                            <button class="back-btn" id="back-to-chats">←</button>
+                            <div class="chat-user-info">
+                                <img src="" alt="" class="chat-avatar">
+                                <span class="chat-username"></span>
+                            </div>
+                            <div class="chat-actions">
+                                <button class="chat-action-btn" id="voice-call-btn" title="Sesli Arama">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                    </svg>
+                                </button>
+                                <button class="chat-action-btn" id="video-call-btn" title="Görüntülü Arama">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                    </svg>
+                                </button>
+                                <button class="chat-action-btn" id="voice-record-btn" title="Ses Kaydı">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                        <path d="19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Message Input at Top -->
+                        <div class="message-input-container">
+                            <input type="text" id="message-input" data-tr="type_message" data-en="Type a message..." placeholder="Mesaj yaz...">
+                            <button id="send-message-btn" data-tr="send" data-en="Send">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="messages-container" id="messages-container">
+                            <!-- Messages will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile View -->
+                <div id="profile-view" class="view">
+                    <div class="profile-container" id="profile-container">
+                        <!-- Profile will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Settings View -->
+                <div id="settings-view" class="view">
+                    <div class="settings-container">
+                        <div class="settings-header">
+                            <h2 data-tr="settings" data-en="Settings">Ayarlar</h2>
+                        </div>
+                        
+                        <div class="settings-content">
+                            <div class="settings-section">
+                                <h3 data-tr="account" data-en="Account">Hesap</h3>
+                                <div class="settings-item">
+                                    <div class="settings-item-content">
+                                        <span data-tr="edit_profile" data-en="Edit Profile">Profili Düzenle</span>
+                                        <p data-tr="edit_profile_desc" data-en="Change your profile information">Profil bilgilerinizi değiştirin</p>
+                                    </div>
+                                    <button class="settings-btn" id="edit-profile-settings">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="9 18l6-6-6-6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="settings-item">
+                                    <div class="settings-item-content">
+                                        <span data-tr="change_password" data-en="Change Password">Şifre Değiştir</span>
+                                        <p data-tr="change_password_desc" data-en="Update your password">Şifrenizi güncelleyin</p>
+                                    </div>
+                                    <button class="settings-btn" id="change-password">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="9 18l6-6-6-6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="settings-item">
+                                    <div class="settings-item-content">
+                                        <span data-tr="privacy" data-en="Privacy">Gizlilik</span>
+                                        <p data-tr="privacy_desc" data-en="Manage your privacy settings">Gizlilik ayarlarınızı yönetin</p>
+                                    </div>
+                                    <button class="settings-btn" id="privacy-settings">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="9 18l6-6-6-6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-section">
+                                <h3 data-tr="preferences" data-en="Preferences">Tercihler</h3>
+                                <div class="settings-item">
+                                    <div class="settings-item-content">
+                                        <span data-tr="language" data-en="Language">Dil</span>
+                                        <p data-tr="language_desc" data-en="Choose your language">Dilinizi seçin</p>
+                                    </div>
+                                    <select id="language-select" class="settings-select">
+                                        <option value="tr">Türkçe</option>
+                                        <option value="en">English</option>
+                                    </select>
+                                </div>
+                                <div class="settings-item">
+                                    <div class="settings-item-content">
+                                        <span data-tr="theme" data-en="Theme">Tema</span>
+                                        <p data-tr="theme_desc" data-en="Choose your theme">Temanızı seçin</p>
+                                    </div>
+                                    <select id="theme-select" class="settings-select">
+                                        <option value="dark" data-tr="dark" data-en="Dark">Koyu</option>
+                                        <option value="light" data-tr="light" data-en="Light">Açık</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-section">
+                                <h3 data-tr="premium" data-en="Premium">Premium</h3>
+                                <div class="settings-item premium-item">
+                                    <div class="settings-item-content">
+                                        <span data-tr="get_premium" data-en="Get Premium">Premium Al</span>
+                                        <p data-tr="premium_desc" data-en="Get verified badge and exclusive features">Mavi tik ve özel özellikler</p>
+                                    </div>
+                                    <button class="btn-premium" id="get-premium">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                                        </svg>
+                                        <span data-tr="upgrade" data-en="Upgrade">Yükselt</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-section">
+                                <div class="settings-item danger-item">
+                                    <div class="settings-item-content">
+                                        <span data-tr="logout" data-en="Logout">Çıkış Yap</span>
+                                        <p data-tr="logout_desc" data-en="Sign out of your account">Hesabınızdan çıkış yapın</p>
+                                    </div>
+                                    <button class="settings-btn danger" id="logout-settings">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                            <polyline points="16,17 21,12 16,7"></polyline>
+                                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create View -->
+                <div id="create-view" class="view">
+                    <div class="create-container">
+                        <div class="create-header">
+                            <h2 data-tr="create_post" data-en="Create Post">Gönderi Oluştur</h2>
+                            <button class="btn-secondary" id="cancel-create" data-tr="cancel" data-en="Cancel">İptal</button>
+                        </div>
+                        
+                        <div class="create-options">
+                            <button class="create-option" id="create-reel">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                </svg>
+                                <span data-tr="reel" data-en="Reel">Reel</span>
+                            </button>
+                            <button class="create-option" id="create-post">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21,15 16,10 5,21"></polyline>
+                                </svg>
+                                <span data-tr="post" data-en="Post">Gönderi</span>
+                            </button>
+                            <button class="create-option" id="create-story">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12,6 12,12 16,14"></polyline>
+                                </svg>
+                                <span data-tr="story" data-en="Story">Hikaye</span>
+                            </button>
+                            <button class="create-option" id="create-tweet">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                                </svg>
+                                <span data-tr="tweet" data-en="Tweet">Tweet</span>
+                            </button>
+                        </div>
+
+                        <div class="create-form hidden" id="create-form">
+                            <textarea id="post-content" data-tr="whats_on_mind" data-en="What's on your mind?" placeholder="Aklından ne geçiyor?"></textarea>
+                            <div class="media-upload" id="media-upload">
+                                <input type="file" id="media-input" accept="image/*,video/*" hidden>
+                                <button class="btn-secondary" id="add-media" data-tr="add_media" data-en="Add Media">Medya Ekle</button>
+                            </div>
+                            <div class="media-preview hidden" id="media-preview">
+                                <!-- Media preview will appear here -->
+                            </div>
+                            <button class="btn-primary" id="publish-post" data-tr="publish" data-en="Publish">Yayınla</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Purchase View -->
+                <div id="premium-view" class="view">
+                    <div class="premium-container">
+                        <div class="premium-header">
+                            <h2>Vibly Premium</h2>
+                            <div class="premium-logo">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="premium-features">
+                            <h3>Premium Özellikler</h3>
+                            <ul>
+                                <li>✓ Mavi onay rozeti</li>
+                                <li>✓ Özel premium rozetleri</li>
+                                <li>✓ Gelişmiş analitikler</li>
+                                <li>✓ Öncelikli destek</li>
+                                <li>✓ Reklamsız deneyim</li>
+                                <li>✓ Özel temalar</li>
+                                <li>✓ Gelişmiş gizlilik ayarları</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-pricing">
+                            <div class="price-card">
+                                <h4>Aylık</h4>
+                                <div class="price">₺29.99/ay</div>
+                            </div>
+                            <div class="price-card recommended">
+                                <h4>Yıllık</h4>
+                                <div class="price">₺299.99/yıl</div>
+                                <div class="savings">2 ay ücretsiz!</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-form">
+                            <h3>Ödeme Bilgileri</h3>
+                            <form id="premium-payment-form">
+                                <div class="input-group">
+                                    <label>Kart Numarası</label>
+                                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                                </div>
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label>Son Kullanma</label>
+                                        <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>CVV</label>
+                                        <input type="text" id="card-cvv" placeholder="123" maxlength="3">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Kart Sahibi</label>
+                                    <input type="text" id="card-holder" placeholder="Ad Soyad">
+                                </div>
+                                <button type="submit" class="btn-premium">Premium Satın Al</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Call View -->
+                <div id="video-call-view" class="view">
+                    <div class="video-call-container">
+                        <div class="video-call-header">
+                            <div class="call-user-info">
+                                <img src="" alt="" class="call-user-avatar">
+                                <span class="call-user-name"></span>
+                            </div>
+                            <div class="call-duration">00:00</div>
+                        </div>
+                        
+                        <div class="video-streams">
+                            <video id="remote-video" class="remote-video" autoplay></video>
+                            <video id="local-video" class="local-video" autoplay muted></video>
+                        </div>
+                        
+                        <div class="call-controls">
+                            <button class="call-btn" id="toggle-mic">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                    <path d="19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                                </svg>
+                            </button>
+                            <button class="call-btn" id="toggle-camera">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                </svg>
+                            </button>
+                            <button class="call-btn" id="share-screen">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </button>
+                            <button class="call-btn end-call" id="end-call">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Modals -->
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div class="modal" id="modal">
+                <!-- Modal content will be dynamically loaded -->
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- Voice Recording Modal -->
+        <div id="voice-modal" class="modal-overlay hidden">
+            <div class="voice-recording-modal">
+                <div class="recording-circle">
+                    <div class="pulse-ring"></div>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                </div>
+                <p class="recording-text" data-tr="recording" data-en="Recording...">Kaydediliyor...</p>
+                <div class="recording-timer">00:00</div>
+                <div class="recording-actions">
+                    <button class="btn-secondary" id="cancel-recording" data-tr="cancel" data-en="Cancel">İptal</button>
+                    <button class="btn-primary" id="stop-recording" data-tr="send" data-en="Send">Gönder</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Modal -->
+        <div id="privacy-modal" class="modal-overlay hidden">
+            <div class="privacy-policy-modal">
+                <h2>Gizlilik Politikası</h2>
+                <div class="privacy-content">
+                    <h3>1. Veri Toplama</h3>
+                    <p>Vibly, kullanıcı deneyimini geliştirmek için gerekli verileri toplar.</p>
+                    
+                    <h3>2. Veri Kullanımı</h3>
+                    <p>Toplanan veriler sadece platform hizmetleri için kullanılır.</p>
+                    
+                    <h3>3. Veri Güvenliği</h3>
+                    <p>Tüm veriler şifrelenerek güvenli bir şekilde saklanır.</p>
+                    
+                    <h3>4. Üçüncü Taraf Paylaşımı</h3>
+                    <p>Verileriniz üçüncü taraflarla paylaşılmaz.</p>
+                    
+                    <h3>5. Kullanıcı Hakları</h3>
+                    <p>Verilerinizi istediğiniz zaman silebilir veya düzenleyebilirsiniz.</p>
+                </div>
+                <div class="privacy-actions">
+                    <button class="btn-secondary" id="close-privacy">Kapat</button>
+                    <button class="btn-primary" id="accept-privacy">Kabul Et</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load scripts in correct dependency order -->
+    <script src="language.js"></script>
+    <script src="utils.js"></script>
+    <script src="storage.js"></script>
+    <script src="auth.js"></script>
+    <script src="realtime.js"></script>
+    <script src="posts.js"></script>
+    <script src="chat.js"></script>
+    <script src="profile.js"></script>
+    <script src="reels.js"></script>
+    <script src="explore.js"></script>
+    <script src="settings.js"></script>
+    <script src="admin.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
